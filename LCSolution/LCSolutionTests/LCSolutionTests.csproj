@@ -50,9 +50,19 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="FindMedianSortedArraysTests.cs" />
+    <Compile Include="LongestCommonPrefxTests.cs" />
+    <Compile Include="LongestPalindromeTests.cs" />
     <Compile Include="LongestSubstringTests.cs" />
     <Compile Include="MedianOfSortedArrayTests.cs" />
+    <Compile Include="PalindromeIntegerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReverseIntegerTests.cs" />
+    <Compile Include="RomanNumTests.cs" />
+    <Compile Include="StringToIntegerTests.cs" />
+    <Compile Include="ThreeSumTests.cs" />
+    <Compile Include="WaterContainerTests.cs" />
+    <Compile Include="ZigZagTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LCSolution\LCSolution.csproj">

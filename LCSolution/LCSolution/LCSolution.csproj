@@ -39,9 +39,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FindMedianSortedArrays.cs" />
+    <Compile Include="LongestCommonPrefx.cs" />
+    <Compile Include="LongestPalindrome.cs" />
     <Compile Include="LongestSubstring.cs" />
     <Compile Include="MedianOfSortedArray.cs" />
+    <Compile Include="PalindromeInteger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReverseInteger.cs" />
+    <Compile Include="RomanNum.cs" />
+    <Compile Include="StringToInteger.cs" />
+    <Compile Include="ThreeSum.cs" />
+    <Compile Include="WaterContainer.cs" />
+    <Compile Include="zigzag.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
