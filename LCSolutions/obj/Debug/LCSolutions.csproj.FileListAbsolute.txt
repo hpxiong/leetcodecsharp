@@ -1,0 +1,6 @@
+D:\myapp\CodingProactice\ConsoleApplication2\LCSolutions\bin\Debug\LCSolutions.exe.config
+D:\myapp\CodingProactice\ConsoleApplication2\LCSolutions\bin\Debug\LCSolutions.exe
+D:\myapp\CodingProactice\ConsoleApplication2\LCSolutions\bin\Debug\LCSolutions.pdb
+D:\myapp\CodingProactice\ConsoleApplication2\LCSolutions\obj\Debug\LCSolutions.csprojResolveAssemblyReference.cache
+D:\myapp\CodingProactice\ConsoleApplication2\LCSolutions\obj\Debug\LCSolutions.exe
+D:\myapp\CodingProactice\ConsoleApplication2\LCSolutions\obj\Debug\LCSolutions.pdb

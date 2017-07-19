@@ -1,0 +1,5 @@
+C:\Users\hxion\Source\Repos\leetcodecsharp\LCSolution\LCSolution\bin\Debug\LCSolution.dll
+C:\Users\hxion\Source\Repos\leetcodecsharp\LCSolution\LCSolution\bin\Debug\LCSolution.pdb
+C:\Users\hxion\Source\Repos\leetcodecsharp\LCSolution\LCSolution\obj\Debug\LCSolution.csprojResolveAssemblyReference.cache
+C:\Users\hxion\Source\Repos\leetcodecsharp\LCSolution\LCSolution\obj\Debug\LCSolution.dll
+C:\Users\hxion\Source\Repos\leetcodecsharp\LCSolution\LCSolution\obj\Debug\LCSolution.pdb
