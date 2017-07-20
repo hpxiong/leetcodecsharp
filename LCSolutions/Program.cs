@@ -30,9 +30,11 @@ namespace LCSolutions
 
             //sln = new Subset();
 
-            sln = new TwoSum(); sln.Test();
+            //sln = new TwoSum(); sln.Test();
 
-            sln = new TwoSumClass();
+            //sln = new TwoSumClass();
+
+            sln = new MergeKSortedLinkedList();
 
             sln.Test();
 

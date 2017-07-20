@@ -47,6 +47,7 @@
     <Compile Include="BaseballScore.cs" />
     <Compile Include="ILCSolutions.cs" />
     <Compile Include="LinkedListAddition.cs" />
+    <Compile Include="LinkedListHelper.cs" />
     <Compile Include="LongestPalindromeString.cs" />
     <Compile Include="Maze.cs" />
     <Compile Include="MergeKSortedLinkedList.cs" />
