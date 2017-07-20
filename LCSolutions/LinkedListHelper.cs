@@ -15,7 +15,7 @@ namespace LCSolutions
             int curr = 0;
             for (int i = 0; i < v; i++)
             {
-                curr += rnd.Next(1, 3);
+                curr += rnd.Next(1, 30);
                 res.AddLast(curr);
             }
 
