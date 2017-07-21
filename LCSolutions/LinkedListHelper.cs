@@ -35,5 +35,17 @@ namespace LCSolutions
             Console.WriteLine();
         }
 
+
+        public static LinkedListNode<int> getNodeAt(LinkedList<int> list, int index)
+        {
+            int c = 0;
+            var current = list.First;
+            while (current != null && c <= index)
+            {
+                current = current.Next;
+                c++;
+            }
+            return current;
+        }
     }
 }
