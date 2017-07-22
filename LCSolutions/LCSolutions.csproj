@@ -45,6 +45,9 @@
   <ItemGroup>
     <Compile Include="AnagramInString.cs" />
     <Compile Include="BaseballScore.cs" />
+    <Compile Include="DataStructures\BinarySearchTree.cs" />
+    <Compile Include="DataStructures\BinaryTree.cs" />
+    <Compile Include="DataStructures\BinaryTreeNode.cs" />
     <Compile Include="ILCSolutions.cs" />
     <Compile Include="LinkedListAddition.cs" />
     <Compile Include="LinkedListDeepCopy.cs" />
@@ -62,6 +65,7 @@
     <Compile Include="Subset.cs" />
     <Compile Include="TwoSum.cs" />
     <Compile Include="TwoSumClass.cs" />
+    <Compile Include="ValidBST.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

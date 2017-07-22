@@ -34,7 +34,8 @@ namespace LCSolutions
 
             //sln = new TwoSumClass();
 
-            sln = new MergeKSortedLinkedList();
+            // sln = new MergeKSortedLinkedList();
+            sln = new LinkedListDeepCopy();
 
             sln.Test();
 
