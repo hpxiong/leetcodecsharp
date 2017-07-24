@@ -10,9 +10,9 @@ namespace LCSolutions
     {
         public void Test()
         {
-            
-        }
+            Console.WriteLine(this.GetType().Name);
 
-           
+            Console.WriteLine();
+        }
     }
 }

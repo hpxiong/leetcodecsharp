@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LCSolutions.DataStructures;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -35,7 +36,9 @@ namespace LCSolutions
             //sln = new TwoSumClass();
 
             // sln = new MergeKSortedLinkedList();
-            sln = new LinkedListDeepCopy();
+            // sln = new LinkedListDeepCopy();
+            sln = new BinaryTree();
+
 
             sln.Test();
 

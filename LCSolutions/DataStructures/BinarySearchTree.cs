@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace LCSolutions.DataStructures
 {
-    class BinarySearchTree
+    public class BinarySearchTree
     {
+
     }
 }
