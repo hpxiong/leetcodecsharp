@@ -78,6 +78,11 @@ namespace LCSolutions.DataStructures
             validBST = BST.IsValidBST(BT.Root);
             Console.WriteLine("IsValidBST: " + validBST);
 
+            int depth = FindMaxDepth(BST.Root);
+            Console.WriteLine("Max depth is " + depth);
+
+            depth = FindMinDepth(BST.Root);
+            Console.WriteLine("Min depth is " + depth);
 
             Console.WriteLine();
         }
@@ -208,15 +213,6 @@ namespace LCSolutions.DataStructures
             if (node == null || (node.Left == null && node.Right == null))
                 return false;
 
-            //bool isvalidLeft = (node.Left == null) || (node.Left!=null && node.Left.Value < node.Value);
-            //bool isvalidRight = (node.Right == null) || (node.Right != null && node.Right.Value > node.Value);
-
-            //bool isvalidSubtree = 
-
-            //return (isvalidLeft && isvalidRight) &&
-            //    IsValidBST(node.Left) &&
-            //    IsValidBST(node.Right);            
-
             return PreOrderValidation(node, null, null);
         }
 
@@ -224,7 +220,6 @@ namespace LCSolutions.DataStructures
         {
             if (node == null)
                 return true;
-
 
             return (low == null || node.Value > low) && (high == null || node.Value < high)
                 && PreOrderValidation(node.Left, low, node.Value)
@@ -316,6 +311,54 @@ namespace LCSolutions.DataStructures
                 else
                     AddBSTNode(root.Right, val);
             }
+        }
+
+        /// <summary>
+        /// This returns number of nodes from Root to furtherest leaf
+        /// If we want to return the edge, then we need ot minus 1
+        /// </summary>
+        /// <param name="node"></param>
+        /// <returns></returns>
+        public int FindMaxDepth(BinaryTree node)
+        {
+            int depth = 0;
+
+            if (node == null)
+                return 0;
+
+            int leftDepth = 0, rightDepth = 0;
+            if (node.Left != null)
+                leftDepth = FindMaxDepth(node.Left);
+            if (node.Right != null)
+                rightDepth = FindMaxDepth(node.Right);
+
+            depth = (leftDepth >= rightDepth ? leftDepth : rightDepth) + 1;
+
+            return depth;
+        }
+
+
+        public int FindMinDepth(BinaryTree node)
+        {
+            int depth = 0;
+
+            if (node == null)
+                return 0;
+
+            int leftDepth = 0, rightDepth = 0;
+
+            if(node.Left != null || node.Right != null)
+            {
+                leftDepth = FindMinDepth(node.Left);
+                rightDepth = FindMinDepth(node.Right);
+                depth = (leftDepth <= rightDepth ? leftDepth : rightDepth)+1;
+            }
+            else
+            {
+                // break the loop...
+                return 0;
+            }
+            return depth;
         }
 
         public void Remove(BinaryTree node)
