@@ -340,25 +340,87 @@ namespace LCSolutions.DataStructures
 
         public int FindMinDepth(BinaryTree node)
         {
-            int depth = 0;
-
             if (node == null)
                 return 0;
 
-            int leftDepth = 0, rightDepth = 0;
+            int depth = 1;
 
-            if(node.Left != null || node.Right != null)
+            //idea is to use a queue, FIFO to process
+            Queue<BinaryTree> queue = new Queue<BinaryTree>();
+            queue.Enqueue(node);
+
+            BinaryTree rightMostNode = node;
+            while(queue.Count > 0)
             {
-                leftDepth = FindMinDepth(node.Left);
-                rightDepth = FindMinDepth(node.Right);
-                depth = (leftDepth <= rightDepth ? leftDepth : rightDepth)+1;
+                var currNode = queue.Dequeue();
+                if (currNode.Left == null && currNode.Right == null) break;
+                if (currNode.Left != null)
+                    queue.Enqueue(currNode.Left);
+                if (currNode.Right != null)
+                    queue.Enqueue(currNode.Right);
+                if(rightMostNode == currNode)
+                {
+                    depth++;
+                    rightMostNode = currNode.Right != null ? currNode.Right : currNode.Left;
+                }
             }
-            else
-            {
-                // break the loop...
-                return 0;
-            }
+
             return depth;
+        }
+
+
+
+        /// <summary>
+        /// Check if given tree is height balanced 
+        /// idea: Top down approach
+        ///       at each level check if the level difference less than 2 
+        ///       if true, keep going down to next level, otherwise, return -1
+        /// </summary>
+        /// <param name="node"></param>
+        /// <returns></returns>
+        public bool ValidateBalancedBinaryTree(BinaryTree node)
+        {
+            return BalancedTreeDepth(node) != -1;
+        }
+
+        private int BalancedTreeDepth(BinaryTree node)
+        {
+            if (node == null) return 0;
+
+            int leftDepth = BalancedTreeDepth(node.Left);
+            if (leftDepth == -1) return -1;
+
+            int rightDepth = BalancedTreeDepth(node.Right);
+            if (rightDepth == -1) return -1;
+
+            return Math.Abs(leftDepth - rightDepth) < 2 ? Math.Max(leftDepth, rightDepth) +1 : -1; 
+        }
+
+
+        /// <summary>
+        /// Create a balanced Binary Search Tree given sorted array
+        /// Divide and Conqure
+        /// Time O(n), Space O(logN)
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public BinaryTree CreateBalancedBST(List<int> input)
+        {
+            return CreateBalancedBST(input, 0, input.Count - 1);
+        }
+
+        private BinaryTree CreateBalancedBST(List<int> input, int start, int end)
+        {
+            if (start >= end) return null;
+
+            int m = (start + end) / 2;
+
+            BinaryTree node = new BinaryTree();
+            node.Value = input[m];
+            node.Left = CreateBalancedBST(input, start, m - 1);
+            node.Right = CreateBalancedBST(input, m + 1, end);
+
+            return node;
         }
 
         public void Remove(BinaryTree node)
