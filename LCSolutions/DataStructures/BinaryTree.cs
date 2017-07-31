@@ -29,7 +29,7 @@ namespace LCSolutions.DataStructures
         {
             Console.WriteLine(this.GetType().Name);
 
-            int n = 6;
+            int n = 10;
             List<int> input = new List<int>();
             for (int i = 0; i < n; i++)
             {
@@ -44,20 +44,23 @@ namespace LCSolutions.DataStructures
 
             BST.CreateBinarySearchTree(input);
 
-            Console.WriteLine("PreOrder");
-            BST.PrintBinaryTreePreOrder(Root);
+            //Console.WriteLine("PreOrder");
+            //BST.PrintBinaryTreePreOrder(Root);
+            Console.WriteLine("PrintBinaryTreePreOrderToScreen");
+            BST.PrintBinaryTreeToScreen(BST.Root);
             Console.WriteLine();
 
+
             Console.WriteLine("PrintBinaryTreeInOrder");
-            BST.PrintBinaryTreeInOrder(Root);
+            BST.PrintBinaryTreeInOrder(BST.Root);
             Console.WriteLine();
 
             Console.WriteLine("PrintBinaryTreePostOrder");
-            BST.PrintBinaryTreePostOrder(Root);
+            BST.PrintBinaryTreePostOrder(BST.Root);
             Console.WriteLine();
 
             Console.WriteLine("PrintLeftBoundaryNode");
-            BST.PrintLeftBoundaryNode(Root);
+            BST.PrintLeftBoundaryNode(BST.Root);
             Console.WriteLine();
 
             Console.WriteLine("PrintLeafNodesRec");
@@ -83,6 +86,13 @@ namespace LCSolutions.DataStructures
 
             depth = FindMinDepth(BST.Root);
             Console.WriteLine("Min depth is " + depth);
+
+            Console.WriteLine("Balanced BST");
+            BinaryTree bbst = new BinaryTree();
+            input.Sort();
+            bbst.Root = bbst.CreateBalancedBSTFromSortedArray(input);
+
+            bbst.PrintBinaryTreeToScreen(bbst.Root);
 
             Console.WriteLine();
         }
@@ -160,6 +170,60 @@ namespace LCSolutions.DataStructures
             PrintBinaryTreePreOrder(node.Left);
             PrintBinaryTreePreOrder(node.Right);
         }
+
+        private static string indentSpace = new string(' ', 5);
+        private void PrintBinaryTreeToScreen(BinaryTree node)
+        {
+            if (node == null)
+                return;
+
+            int depth = 1;
+            Queue<BinaryTree> queue = new Queue<BinaryTree>();
+            queue.Enqueue(node);
+            BinaryTree rightMost = node;
+
+            string space = "";
+            space = new string(' ', 4 * depth);
+            Console.WriteLine(space + node.Value);
+
+            while (queue.Count > 0)
+            {
+                space = new string(' ', 4 * depth);
+                var curr = queue.Dequeue();
+
+                StringBuilder dataline = new StringBuilder();
+                StringBuilder connection = new StringBuilder();
+
+                if (curr.Left != null)
+                {
+                    queue.Enqueue(curr.Left);
+                    connection.Append(space + " / " + space);
+                    dataline.Append(curr.Left.Value + space);
+                }
+                if (curr.Right != null)
+                {
+                    connection.Append(space + " \\  ");
+                    dataline.Append(space + curr.Right.Value);
+
+                    queue.Enqueue(curr.Right);
+                }
+                if(curr.Left!=null || curr.Right!=null)
+                {
+                    Console.WriteLine(connection.ToString());
+                    Console.WriteLine(dataline.ToString());
+                }
+
+
+                if(curr == rightMost)
+                {
+                    rightMost = curr.Right != null ? curr.Right : curr.Left;
+                    Console.WriteLine();
+                    depth++;
+                }
+            }
+
+        }
+
 
         /// <summary>
         /// Print binary tree in-order (bottom-up post-order trasversal)
@@ -404,33 +468,47 @@ namespace LCSolutions.DataStructures
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public BinaryTree CreateBalancedBST(List<int> input)
+        public BinaryTree CreateBalancedBSTFromSortedArray(List<int> input)
         {
-            return CreateBalancedBST(input, 0, input.Count - 1);
+            return CreateBalancedBSTFromSortedArray(input, 0, input.Count - 1);
         }
 
-        private BinaryTree CreateBalancedBST(List<int> input, int start, int end)
+        /// <summary>
+        /// idea is similar to Binary Search, divid and conque
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="start"></param>
+        /// <param name="end"></param>
+        /// <returns></returns>
+        private BinaryTree CreateBalancedBSTFromSortedArray(List<int> input, int start, int end)
         {
-            if (start >= end) return null;
+            // !!! start == end is a valid condition for middle values
+            if (start > end) return null;
 
             int m = (start + end) / 2;
 
             BinaryTree node = new BinaryTree();
             node.Value = input[m];
-            node.Left = CreateBalancedBST(input, start, m - 1);
-            node.Right = CreateBalancedBST(input, m + 1, end);
+            node.Left = CreateBalancedBSTFromSortedArray(input, start, m - 1);
+            node.Right = CreateBalancedBSTFromSortedArray(input, m + 1, end);
 
             return node;
         }
 
-        public void Remove(BinaryTree node)
-        {
-            throw new NotFiniteNumberException();
-        }
+        ///If we convert the linked list to array, then we can apply the divide and conque method above
+        ///This will requre additional O(n) space
+        ///the LC code is not very clear
 
-        public void Insert(BinaryTree node)
+        private BinaryTree BSTNode;
+        public BinaryTree CreatedBalancedBSTFromSortedLinkedList(LinkedList<int> input)
         {
+            BSTNode = new BinaryTree();
+            BSTNode.Value = input.First.Value;
             throw new NotFiniteNumberException();
+        }        
+
+        public int MacPathSum(BinaryTree node)
+        {
         }
     }
 }
