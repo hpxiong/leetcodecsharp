@@ -497,18 +497,65 @@ namespace LCSolutions.DataStructures
 
         ///If we convert the linked list to array, then we can apply the divide and conque method above
         ///This will requre additional O(n) space
-        ///the LC code is not very clear
 
         private BinaryTree BSTNode;
-        public BinaryTree CreatedBalancedBSTFromSortedLinkedList(LinkedList<int> input)
+        /// <summary>
+        /// this method is similar to the idea of converting LinkedList to array. It scans the list for mid point everytime
+        /// during the iteration
+        /// </summary>
+        /// <param name="head"></param>
+        /// <returns></returns>
+        public BinaryTree CreatedBalancedBSTFromSortedLinkedList(LinkedListNode<int> head)
         {
-            BSTNode = new BinaryTree();
-            BSTNode.Value = input.First.Value;
-            throw new NotFiniteNumberException();
-        }        
+            var p1 = head;
+            var p2 = head.Next.Next;
+            while(p2 != null && p2.Next != null)
+            {
+                p1 = p1.Next;
+                p2 = p2.Next.Next;
+            }
 
-        public int MacPathSum(BinaryTree node)
+            BinaryTree root = new BinaryTree(p1.Next.Value);
+            root.Right = CreatedBalancedBSTFromSortedLinkedList(p1.Next.Next);
+            root.Left = CreatedBalancedBSTFromSortedLinkedList(head);
+            
+            return root;
+        }
+
+        /// <summary>
+        /// this is the LC method. the idea is to bottom-up, left-to-right search using the list head, start and end point to the search
+        /// </summary>
+        /// <param name="head"></param>
+        /// <param name="start"></param>
+        /// <param name="end"></param>
+        /// <returns></returns>
+        public BinaryTree CreatedBalancedBSTFromSortedLinkedList(LinkedListNode<int> head, int start, int end)
         {
+            if (start > end) return null;
+
+            int m = (start + end) / 2;
+
+            BinaryTree left = CreatedBalancedBSTFromSortedLinkedList(head, start, m - 1);
+            var list = head.Next;
+            BinaryTree parent = new BinaryTree(list.Value);
+            parent.Left = left;
+            parent.Right = CreatedBalancedBSTFromSortedLinkedList(list, m + 1, end);
+
+            return parent;
+        }
+
+
+        private int MaxSum = Int32.MinValue;
+        public int MaxPathSum(BinaryTree node)
+        {
+            if (node == null)
+                return 0;
+
+            int leftSum = MaxPathSum(node.Left);
+            int rightSum = MaxPathSum(node.Left);
+            MaxSum = Math.Max(leftSum + rightSum + node.Value, MaxSum);
+            int ret = node.Value + Math.Max(leftSum, rightSum);
+            return ret;
         }
     }
 }
